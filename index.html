@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en-EN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Ahmed">
+    <meta name="description" content="Practicing different HTML head tags">
+    <title>HTML Head Tag Practice</title>
+    <base href="https://www.wikipedia.org/" target="_blank">
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        h1 {
+            color: #333;
+        }
+        
+        p {
+            color: #555;
+            font-size: 18px;
+        }
+        
+        a {
+            color: #0077cc;
+        }
+        
+        button {
+            padding: 10px 20px;
+            background-color: #4caf50;
+            border: none;
+            color: white;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+    <script>
+        function showAlert() {
+            alert("Script tag is working perfectly ");
+        }
+    </script>
+</head>
+
+<body>
+
+    <h1>Practicing HTML &lt;head&gt; Tags</h1>
+    <p>In this file, I'm practicing all the important head tags used in HTML.</p>
+
+    <ul style="text-align: left; max-width: 500px; margin: 20px auto; ">
+        <li><code>&lt;meta&gt;</code> – for metadata</li>
+        <li><code>&lt;title&gt;</code> – sets the title of the tab</li>
+        <li><code>&lt;base&gt;</code> – sets a base URL</li>
+        <li><code>&lt;link&gt;</code> – links external files like CSS</li>
+        <li><code>&lt;style&gt;</code> – used for internal CSS</li>
+        <li><code>&lt;script&gt;</code> – used to run JavaScript</li>
+    </ul>
+
+    <button onclick="showAlert() ">Click to test &lt;script&gt; tag</button>
+
+    <p>
+        Here's a link using the <code>&lt;base&gt;</code> tag:
+        <a href="wiki/Main_Page">Go to another page</a> (will open https://www.wikipedia.org/wiki/Main_Page)
+    </p>
+
+</body>
+
+</html>
