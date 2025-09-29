@@ -88,3 +88,66 @@ fetchData().then(x=>{
 
 asyncFlow("ahmad","123")
 scopeMadness()
+
+function coinFlip(){
+    return new Promise((res,rej)=>{
+        setTimeout(()=>{
+            Math.random()>0.5?res("Heads"):rej("Tails")
+        },500)
+    })
+}
+coinFlip()
+.then(x=>console.log("Coin result:",x))
+.catch(e=>console.log("Coin fail:",e))
+
+function stepOne(x){
+    return new Promise(r=>setTimeout(()=>r(x+1),400))
+}
+function stepTwo(y){
+    return new Promise(r=>setTimeout(()=>r(y*2),400))
+}
+function stepThree(z){
+    return new Promise(r=>setTimeout(()=>r(z-3),400))
+}
+stepOne(5)
+.then(stepTwo)
+.then(stepThree)
+.then(f=>console.log("Chain final:",f))
+.catch(err=>console.log("Chain error:",err))
+
+function fakeFetch(id){
+    return new Promise((res,rej)=>{
+        let t=Math.floor(Math.random()*1000)+200
+        setTimeout(()=>{
+            Math.random()>0.2?res(`data-${id}`):rej(`err-${id}`)
+        },t)
+    })
+}
+Promise.all([fakeFetch(1),fakeFetch(2),fakeFetch(3)])
+.then(d=>console.log("All ok:",d))
+.catch(e=>console.log("All fail:",e))
+
+Promise.race([fakeFetch("fast"),fakeFetch("slow"),fakeFetch("medium")])
+.then(w=>console.log("Race won:",w))
+.catch(e=>console.log("Race error:",e))
+
+Promise.allSettled([fakeFetch("A"),fakeFetch("B"),fakeFetch("C")])
+.then(r=>{
+    console.log("AllSettled:")
+    r.forEach(x=>console.log(x.status, x.value||x.reason))
+})
+
+fakeFetch("X")
+.then(r=>{
+    console.log("Got:",r)
+    return fakeFetch("Y")
+})
+.then(r2=>{
+    console.log(" got:",r2)
+    return fakeFetch("Z")
+})
+.catch(e=>{
+    console.log("Recovering from error:",e)
+    return "Default-Value"
+})
+.then(last=>console.log("Final:",last))
